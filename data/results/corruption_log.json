@@ -1,0 +1,110 @@
+{
+  "timestamp": "2026-09-26T11:28:08.226555+00:00",
+  "input_records_count": 24,
+  "corrupted_records_count": 21,
+  "total_scenarios": 6,
+  "scenarios": [
+    {
+      "scenario_id": 1,
+      "scenario_name": "drop_latest_records",
+      "description": "Dropped 5 newest records (~20%) to simulate data loss/ingestion lag.",
+      "affected_records_count": 5,
+      "affected_paper_ids": [
+        "10.1145/3637528.3671812",
+        "10.1145/3637528.3671808",
+        "10.1145/3637528.3671804",
+        "10.1145/3637528.3671807",
+        "10.1145/3637528.3671802"
+      ],
+      "parameters": {
+        "drop_ratio": 0.2,
+        "dropped_count": 5
+      },
+      "expected_quality_impact": "Retrieval hit rate drop on questions targeting dropped recent papers."
+    },
+    {
+      "scenario_id": 2,
+      "scenario_name": "blank_summary",
+      "description": "Blanked summary field for 2 records.",
+      "affected_records_count": 2,
+      "affected_paper_ids": [
+        "10.1145/3637528.3671801",
+        "10.1145/3637528.3671824"
+      ],
+      "parameters": {
+        "blank_indices": [
+          13,
+          0
+        ]
+      },
+      "expected_quality_impact": "Fails GX ExpectColumnValueLengthsToBeBetween(summary, min_value=16); drops summary token F1."
+    },
+    {
+      "scenario_id": 3,
+      "scenario_name": "inject_noise",
+      "description": "Injected synthetic noise strings into summary of 3 records.",
+      "affected_records_count": 3,
+      "affected_paper_ids": [
+        "10.1145/3637528.3671823",
+        "10.1145/3637528.3671822",
+        "10.1145/3637528.3671821"
+      ],
+      "parameters": {
+        "noise_prefix": "### NOISE_INJECTED_#@!$%^&* RANDOM_GARBAGE_UNREADABLE_TOKEN ### ",
+        "target_count": 3
+      },
+      "expected_quality_impact": "Degrades embedding semantic similarity and answer relevance."
+    },
+    {
+      "scenario_id": 4,
+      "scenario_name": "truncate_title",
+      "description": "Truncated title to < 8 chars for 2 records.",
+      "affected_records_count": 2,
+      "affected_paper_ids": [
+        "10.1145/3637528.3671824",
+        "10.1145/3637528.3671823"
+      ],
+      "parameters": {
+        "max_length": 5,
+        "target_count": 2
+      },
+      "expected_quality_impact": "Breaks exact title lookup in QA Agent; impairs context retrieval by title."
+    },
+    {
+      "scenario_id": 5,
+      "scenario_name": "stale_date",
+      "description": "Shifted published date to 2024-01-01 (+400 age_days) for 8 records.",
+      "affected_records_count": 8,
+      "affected_paper_ids": [
+        "10.1145/3637528.3671824",
+        "10.1145/3637528.3671823",
+        "10.1145/3637528.3671822",
+        "10.1145/3637528.3671821",
+        "10.1145/3637528.3671810",
+        "10.1145/3637528.3671820",
+        "10.1145/3637528.3671819",
+        "10.1145/3637528.3671818"
+      ],
+      "parameters": {
+        "stale_date": "2024-01-01",
+        "added_age_days": 400,
+        "target_count": 8
+      },
+      "expected_quality_impact": "Causes Freshness SLA violation (stale ratio > 25% => is_fresh=False); breaks date answers."
+    },
+    {
+      "scenario_id": 6,
+      "scenario_name": "duplicate_rows",
+      "description": "Duplicated 2 existing records to simulate pipeline duplication.",
+      "affected_records_count": 2,
+      "affected_paper_ids": [
+        "10.1145/3637528.3671824",
+        "10.1145/3637528.3671823"
+      ],
+      "parameters": {
+        "duplicate_count": 2
+      },
+      "expected_quality_impact": "Fails GX ExpectColumnValuesToBeUnique(column='paper_id')."
+    }
+  ]
+}

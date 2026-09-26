@@ -109,27 +109,27 @@ Giải thích ngắn gọn bằng lời của bạn:
 
 | Metric/signal          | Baseline | Corrupted | Repaired | Nhận xét của cá nhân |
 | ---------------------- | -------: | --------: | -------: | ------------------------- |
-| `retrieval_hit_rate` | Chưa có | Chưa có | Chưa có | Chưa chạy evaluation |
-| `mean_token_f1`      | Chưa có | Chưa có | Chưa có | Chưa chạy evaluation |
-| `judge_accuracy`     | Chưa có | Chưa có | Chưa có | Chưa chạy LLM judge |
-| `mean_judge_score`   | Chưa có | Chưa có | Chưa có | Chưa chạy LLM judge |
-| Quality checks       | Chưa có | Chưa có | Chưa có | Module quality chưa được xác minh |
-| Freshness status     | Chưa có | Chưa có | Chưa có | Chưa có freshness report |
+| `retrieval_hit_rate` | 1.00 | 0.80 | 1.00 | Corruption làm mất 20% khả năng truy xuất đúng; repair khôi phục hoàn toàn |
+| `mean_token_f1`      | 1.00 | 0.50 | 1.00 | Mức khớp giữa câu trả lời và đáp án chuẩn giảm một nửa khi dữ liệu bị làm hỏng |
+| `judge_accuracy`     | 1.00 | 0.50 | 1.00 | Chỉ một nửa câu trả lời từ dữ liệu corrupted được chấm đúng |
+| `mean_judge_score`   | 5.00 | 3.00 | 5.00 | Điểm trung bình giảm từ 5 xuống 3 và trở lại 5 sau repair |
+| Quality checks       | Đạt 6/6 (100%) | Đạt 4/6 (66,67%) | Đạt 6/6 (100%) | Corrupted thất bại ở tính duy nhất của `paper_id` và độ dài `summary` |
+| Freshness status     | Đạt: 1/24 dòng cũ | Không đạt: 11/21 dòng cũ | Đạt: 1/24 dòng cũ | Tỷ lệ dữ liệu cũ tăng từ 4,17% lên 52,38%, sau đó trở về 4,17% |
 
 ### Kết luận từ số liệu
 
 Hoàn thành hai chuỗi nguyên nhân–bằng chứng sau:
 
-1. Data corruption → dự kiến quality/freshness giảm → cần metrics để xác nhận mức ảnh hưởng đến agent.
-2. Khôi phục từ raw snapshot → dữ liệu sạch trở lại → cần chạy lại evaluation để xác nhận metrics phục hồi.
+1. Data corruption → mất 5 bản ghi mới, tạo DOI trùng, summary rỗng/nhiễu và ngày xuất bản cũ → quality chỉ còn 4/6 kiểm tra đạt, freshness chuyển sang không đạt, `retrieval_hit_rate` giảm từ 1,00 xuống 0,80 và `mean_token_f1` giảm từ 1,00 xuống 0,50.
+2. Khôi phục từ raw snapshot → dữ liệu trở lại 24 dòng, DOI duy nhất, summary hợp lệ và chỉ còn 1 dòng cũ → quality và freshness đạt lại yêu cầu; toàn bộ metric evaluation trở về bằng baseline.
 
 Corruption nào ảnh hưởng rõ nhất và vì sao?
 
-Chưa thể kết luận corruption nào ảnh hưởng rõ nhất vì pipeline evaluation chưa tạo đủ số liệu.
+Nhóm corruption tác động trực tiếp đến nội dung và khả năng truy xuất ảnh hưởng rõ nhất: mất 5 bản ghi mới khiến `retrieval_hit_rate` giảm 20%, còn summary rỗng/nhiễu và tiêu đề bị cắt góp phần làm `mean_token_f1` và `judge_accuracy` giảm 50%. Riêng việc đổi ngày cũ ảnh hưởng rõ nhất đến freshness, làm số dòng cũ tăng từ 1 lên 11 và khiến freshness không đạt.
 
 Kết quả nào khác với kỳ vọng ban đầu?
 
-Chưa có kết quả trái kỳ vọng. Phần đã kiểm tra cho thấy ingestion và cleaning đều giữ đủ 24 bản ghi.
+Điểm đáng chú ý là `retrieval_hit_rate` vẫn đạt 0,80 dù dữ liệu corrupted chỉ còn 21 dòng và có nhiều lỗi, nhưng chất lượng câu trả lời giảm mạnh hơn: `mean_token_f1` và `judge_accuracy` chỉ còn 0,50. Điều này cho thấy truy xuất được tài liệu chưa đủ; nội dung tài liệu cũng phải đầy đủ và sạch để agent trả lời chính xác.
 
 ## 9. Điều học được và hướng cải thiện
 

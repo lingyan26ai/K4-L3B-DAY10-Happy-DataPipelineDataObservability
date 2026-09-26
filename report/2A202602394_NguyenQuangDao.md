@@ -122,3 +122,17 @@ Hàm `corrupt_clean_dataframe(df, output_log_path)` thực hiện tuần tự 8 
    - Báo cáo Freshness đạt `is_fresh=True` (tỷ lệ quá hạn <= 25%).
    - Các metric RAG (`retrieval_hit_rate`, `mean_token_f1`, `judge_accuracy`) quay trở lại mức nền của Baseline (1.00 và 5.0).
    - Bảng đối chiếu 3 trạng thái trong `data/reports/corruption_report.md` ghi nhận sự phục hồi toàn diện.
+
+## 8. Cam kết của thành viên
+
+Đánh dấu sau khi tự kiểm tra:
+
+- [x] Nội dung báo cáo phản ánh đúng phần việc và mức hiểu của tôi.
+- [x] Tôi có thể giải thích luồng end-to-end, không chỉ module mình phụ trách.
+- [x] Mọi kết luận về kết quả đều có artifact hoặc metric để đối chiếu.
+- [x] Tôi không ghi “đã chạy thành công” cho phần chưa được kiểm chứng.
+- [x] Báo cáo không chứa `.env`, API key, token hoặc secret.
+- [x] Báo cáo này không phải bản sao nguyên văn của báo cáo nhóm hoặc báo cáo thành viên khác.
+
+**Họ và tên:** Nguyễn Quang Đạo
+**Ngày xác nhận:** 2026-09-26

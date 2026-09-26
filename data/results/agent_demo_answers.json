@@ -1,0 +1,50 @@
+[
+  {
+    "question": "What is the first sentence of the summary of 'Agentic Retrieval-Augmented Generation for Knowledge-Intensive Tasks'?",
+    "answer": "Retrieval-Augmented Generation (RAG) significantly improves large language model accuracy by grounding responses in retrieved passages.",
+    "retrieved_titles": [
+      "Agentic Retrieval-Augmented Generation for Knowledge-Intensive Tasks",
+      "Advanced Perspectives on Agentic Retrieval-Augmented Generation for Knowledge-Intensive Tasks",
+      "Freshness SLAs for Real-Time LLM Knowledge Augmentation",
+      "Advanced Perspectives on Hybrid Search Architectures: Combining BM25 with Dense Representations"
+    ],
+    "retrieved_doc_ids": [
+      "10.1145/3637528.3671801",
+      "10.1145/3637528.3671813",
+      "10.1145/3637528.3671804",
+      "10.1145/3637528.3671823"
+    ]
+  },
+  {
+    "question": "What is the first sentence of the summary of 'Continuous Benchmark Evaluation for Enterprise Retrieval Pipelines'?",
+    "answer": "Static benchmarks fail to capture domain drift in enterprise knowledge bases.",
+    "retrieved_titles": [
+      "Continuous Benchmark Evaluation for Enterprise Retrieval Pipelines",
+      "Advanced Perspectives on Continuous Benchmark Evaluation for Enterprise Retrieval Pipelines",
+      "Advanced Perspectives on Evaluating Retrieval Precision with Token F1 and LLM Judges",
+      "Evaluating Retrieval Precision with Token F1 and LLM Judges"
+    ],
+    "retrieved_doc_ids": [
+      "10.1145/3637528.3671812",
+      "10.1145/3637528.3671824",
+      "10.1145/3637528.3671817",
+      "10.1145/3637528.3671805"
+    ]
+  },
+  {
+    "question": "What is the first sentence of the summary of 'Advanced Perspectives on Continuous Benchmark Evaluation for Enterprise Retrieval Pipelines'?",
+    "answer": "An extended empirical study on tatic benchmarks fail to capture domain drift in enterprise knowledge bases.",
+    "retrieved_titles": [
+      "Advanced Perspectives on Continuous Benchmark Evaluation for Enterprise Retrieval Pipelines",
+      "Continuous Benchmark Evaluation for Enterprise Retrieval Pipelines",
+      "Advanced Perspectives on Evaluating Retrieval Precision with Token F1 and LLM Judges",
+      "Evaluating Retrieval Precision with Token F1 and LLM Judges"
+    ],
+    "retrieved_doc_ids": [
+      "10.1145/3637528.3671824",
+      "10.1145/3637528.3671812",
+      "10.1145/3637528.3671817",
+      "10.1145/3637528.3671805"
+    ]
+  }
+]

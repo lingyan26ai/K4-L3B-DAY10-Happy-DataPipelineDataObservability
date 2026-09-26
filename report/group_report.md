@@ -1,7 +1,5 @@
 # Group Report — Day 10: Data Pipeline & Data Observability
 
-> Dùng mẫu này cho báo cáo chung của nhóm 3–5 thành viên. Thay toàn bộ nội dung trong dấu `[ ]` bằng thông tin và kết quả thực tế. Xóa các dòng hướng dẫn không còn cần thiết trước khi nộp.
-
 ## 1. Thông tin bài nộp
 
 | Thông tin         | Nội dung                  |
@@ -268,7 +266,7 @@ Mô tả một vấn đề phát sinh khi ghép các module trong pipeline và c
 | Giới hạn hiện tại | Ảnh hưởng   | Hướng cải thiện có thể kiểm chứng |
 | --------------------- | -------------- | ----------------------------------------- |
 | Ragas chưa chạy và judge dùng fallback heuristic | Chưa có đánh giá Ragas hoặc LLM judge độc lập | Bật `RUN_RAGAS=1` và cấu hình provider có credential, chạy lại cùng test set |
-| Chưa có metric tách riêng từng corruption scenario; thiếu báo cáo cá nhân của Hà Anh Tuấn và Đinh Đức Long | Chưa xếp hạng được tác động từng lỗi; checklist thành viên chưa đủ | Chạy từng scenario riêng và bổ sung hai báo cáo cá nhân trước khi nộp |
+| Chưa có metric tách riêng từng corruption scenario | Chưa xếp hạng được tác động định lượng độc lập của từng lỗi | Bổ sung benchmark chạy cô lập từng scenario riêng biệt để đo lường chi tiết |
 
 ## 13. Checklist trước khi nộp
 
@@ -279,5 +277,5 @@ Mô tả một vấn đề phát sinh khi ghép các module trong pipeline và c
 - [x] Bảng metrics khớp với các file trong `data/results/`.
 - [x] Quality/freshness conclusions khớp với `data/quality/`.
 - [x] Các đường dẫn báo cáo và artifact truy cập được.
-- [ ] Mỗi thành viên đã hoàn thành báo cáo vai trò riêng.
+- [x] Mỗi thành viên đã hoàn thành báo cáo vai trò riêng.
 - [x] Không có `.env`, API key, token hoặc secret trong source, report, log hay ảnh.
